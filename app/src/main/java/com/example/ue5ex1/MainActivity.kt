@@ -26,6 +26,8 @@ class MainActivity : ComponentActivity() {
                         composable("ex2") {
                             GestureScreen()
                         }
+                        composable("ex3") { MultiTouchScreen() }
+
                     }
                 }
             }

@@ -21,25 +21,31 @@ import androidx.compose.ui.platform.LocalDensity
 
 @Composable
 fun TouchScreen() {
-    // 1) State-Halter für Größe, Positionen, Distanz
+    //State-Halter für Größe, Positionen, Distanz
     var canvasSize by remember { mutableStateOf(IntSize.Zero) }
     var redCenter by remember { mutableStateOf(Offset.Zero) }
     var blueCenter by remember { mutableStateOf<Offset?>(null) }
     var distance by remember { mutableStateOf(0f) }
 
-    // 2) Radius definieren (50 dp → px)
+    //Radius definieren (50 dp → px)
     val radiusDp = 50.dp
     val radiusPx = with(LocalDensity.current) { radiusDp.toPx() }
 
-    // 3) roten Kreis random platzieren
+    //roten Kreis random platzieren
     LaunchedEffect(canvasSize) {
         if (canvasSize.width > 0 && canvasSize.height > 0) {
+            val minX = radiusPx //abstand links
+            val maxX = canvasSize.width - radiusPx//abstand rechts
+            val minY = radiusPx//abstand oben
+            val maxY = canvasSize.height - radiusPx//abstand unten
+
             redCenter = Offset(
-                x = Random.nextFloat() * (canvasSize.width - 2 * radiusPx) + radiusPx,
-                y = Random.nextFloat() * (canvasSize.height - 2 * radiusPx) + radiusPx
+                x = Random.nextFloat() * (maxX - minX) + minX,
+                y = Random.nextFloat() * (maxY - minY) + minY
             )
         }
     }
+
 
     Box(
         Modifier

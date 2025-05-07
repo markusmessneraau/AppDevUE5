@@ -33,6 +33,10 @@ fun StartScreen(navController: NavController) {
             Text("Ex2: Zeichenfläche & Gesten")
         }
 
+        Button(onClick = { navController.navigate("ex3") }) {
+            Text("Exercise 3 - MultiTouch")
+        }
+
 
     }
 }
