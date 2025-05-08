@@ -34,10 +34,10 @@ fun MultiTouchScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .pointerInput(Unit) {
-                    awaitPointerEventScope {
-                        while (true) {
+                    awaitPointerEventScope {//coroutine, für mehrere pointerevents
+                        while (true) {      // solange coroutine aktiv
                             val event = awaitPointerEvent(PointerEventPass.Main)
-                            event.changes.forEach { change ->
+                            event.changes.forEach { change -> //change = einzelne pointer events
                                 val id = change.id.value.toInt()
                                 val pos = change.position
 
@@ -46,7 +46,7 @@ fun MultiTouchScreen() {
                                     val path = pointerPaths.getOrPut(id) { mutableListOf() }
                                     path.add(pos)
                                     pointerColors.putIfAbsent(id, randomColor())
-                                    change.consume()
+                                    change.consume() //als verarbeitet markieren
                                 } else if (!change.pressed && change.previousPressed) {
                                     activePointers.remove(id)
                                     change.consume()

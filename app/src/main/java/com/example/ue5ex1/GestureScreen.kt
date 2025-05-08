@@ -29,8 +29,8 @@ fun GestureScreen() {
         // Zeichenbereich
         Box(
             Modifier
-                .weight(1f)
-                .fillMaxWidth()
+                .weight(1f)  // Nimmt vertikal so viel Platz wie möglich
+                .fillMaxWidth() // Nimmt 100 % Breite
                 .pointerInput(Unit) {
                     // Drag zum Zeichnen
                     detectDragGestures(

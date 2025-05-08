@@ -34,7 +34,7 @@ fun StartScreen(navController: NavController) {
         }
 
         Button(onClick = { navController.navigate("ex3") }) {
-            Text("Exercise 3 - MultiTouch")
+            Text("Ex3 - MultiTouch")
         }
 
 
